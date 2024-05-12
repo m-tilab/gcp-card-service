@@ -3,7 +3,8 @@
 name: Java CI
 on:
   pull_request:
-    - master
+    branches:
+      - master
   workflow_dispatch:
 
 jobs:
