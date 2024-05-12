@@ -1,7 +1,11 @@
 ## https://github.com/actions/setup-java
 
 name: Java CI
-on: [ workflow_dispatch ]
+on:
+  pull_request:
+    - master
+  workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
