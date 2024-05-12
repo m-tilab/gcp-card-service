@@ -1,1 +1,20 @@
-spring.application.name=gcp-card-service
+server:
+  servlet:
+    context-path: /card-service
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql:///postgres
+    username: postgres
+    password: postgres
+    hikari:
+      data-source-properties:
+        data-source-class-name: com.google.cloud.sql.postgres.SocketFactory
+        cloudSqlInstance: ardent-window-404920:us-central1:test-cloud-sql
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
