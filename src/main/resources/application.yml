@@ -12,6 +12,7 @@ spring:
       data-source-properties:
         data-source-class-name: com.google.cloud.sql.postgres.SocketFactory
         cloudSqlInstance: ardent-window-404920:us-central1:test-cloud-sql
+        ipTypes: PUBLIC,PRIVATE
   jpa:
     hibernate:
       ddl-auto: update
