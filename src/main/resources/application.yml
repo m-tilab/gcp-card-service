@@ -8,14 +8,12 @@ spring:
     url: jdbc:postgresql:///postgres
     username: postgres
     password: postgres
-    hikari:
-      data-source-properties:
-        data-source-class-name: com.google.cloud.sql.postgres.SocketFactory
-        cloudSqlInstance: ardent-window-404920:us-central1:test-cloud-sql
-        ipTypes: PUBLIC,PRIVATE
+  cloud:
+    gcp:
+      project-id: ardent-window-404920
+      sql:
+        instance-connection-name: ardent-window-404920:us-central1:test-cloud-sql
+        database-name: postgres
   jpa:
     hibernate:
       ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
