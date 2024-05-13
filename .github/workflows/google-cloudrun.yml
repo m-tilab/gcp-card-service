@@ -47,6 +47,8 @@ name: Build and Deploy to Cloud Run
 on:
   push:
     branches: [ "master" ]
+  workflow_dispatch:
+
 
 env:
   PROJECT_ID: ardent-window-404920 # TODO: update Google Cloud project id
@@ -73,6 +75,21 @@ jobs:
           token_format: 'access_token'
           workload_identity_provider: projects/738028941022/locations/global/workloadIdentityPools/github/providers/my-repo-provider # e.g. - projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider
           service_account: github-build-deploy-cloudrun@ardent-window-404920.iam.gserviceaccount.com # e.g. - my-service-account@my-project.iam.gserviceaccount.com
+
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew clean build -x test
 
       # NOTE: Alternative option - authentication via credentials json
       # - name: Google Auth
